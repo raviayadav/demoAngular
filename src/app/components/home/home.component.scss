@@ -1,8 +1,4 @@
-$light-green: rgba(126, 213, 111, 0.800);
-$medium-green: rgba(85, 197, 122, 0.800);
-$dark-green : rgba(39, 179, 133, 0.800);
-$color-white: #fff;
-$color-gray: #777;
+@import "../../../css-variables";
 .header {
   height: 95vh;
   background-image: linear-gradient(
@@ -14,7 +10,7 @@ $color-gray: #777;
   background-size: cover;
   background-position: top;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  position: relative; 
+  position: relative;
   &__logo-box {
     position: absolute;
     top: 4rem;
@@ -51,7 +47,7 @@ $color-gray: #777;
     letter-spacing: 3.5rem;
     display: block;
     animation: moveInFromLeft 1s ease-out;
-  }  
+  }
 }
 
 @keyframes moveInFromLeft {

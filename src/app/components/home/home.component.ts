@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../userClasses';
 
 @Component({
   selector: 'app-home',
@@ -6,9 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  user = new User('Ravi Yadav', 'Web Developer');
   constructor() { }
-
   ngOnInit() {
   }
 
