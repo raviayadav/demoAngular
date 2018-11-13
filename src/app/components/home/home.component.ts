@@ -8,6 +8,7 @@ import { User } from '../../userClasses';
 })
 export class HomeComponent implements OnInit {
   user = new User('Ravi Yadav', 'Web Developer');
+  hideGrid = true;
   constructor() { }
   ngOnInit() {
   }
