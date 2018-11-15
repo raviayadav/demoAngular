@@ -10,7 +10,8 @@
   src: url(assets/fonts/Lato/Lato-Regular.ttf) format("opentype");
 }
 html {
-  font-size: 10px;
+  // making default html font size as 10px instead of 16px
+  font-size: 62.5%; 
 }
 body {
   font-family: lato, sans-serif;
@@ -23,7 +24,7 @@ body {
 }
 .row {
   max-width: $grid-width;
-  background-color: #eee;
+  //background-color: #eee;
   margin: 0 auto;
   &:not(:last-child) {
    margin-bottom: $gutter-vertical;
@@ -31,7 +32,7 @@ body {
   @include clearfix;
   //below is attr selector, ^= means starts with *= means contains and $= means ends with
   [class^='col-'] {
-    background-color: orangered;
+    //background-color: orangered;
     float: left;
     &:not(:last-child) {
       margin-right: $gutter-horizontal;
@@ -55,6 +56,208 @@ body {
   //3 of 4 will eat up two gutters
   .col-3-of-4 {
     width: calc(3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal});
+  }
+}
+.header {
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      $light-green,
+      $dark-green
+  ),
+  url(assets/img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative;
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+  &__logo {
+    height: 3.5rem;
+  }
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+  // hack to avoid bounce after animation
+  backface-visibility: hidden;
+  margin-bottom: 6rem;
+  &--sub {
+    font-weight: 400;
+    font-size: 2rem;
+    letter-spacing: 1.74rem;
+    display: block;
+    animation: moveInFromRight 1s ease-out;
+  }
+  &--main {
+    font-weight: 400;
+    font-size: 6rem;
+    letter-spacing: 3.5rem;
+    display: block;
+    animation: moveInFromLeft 1s ease-out;
+  }
+}
+
+@keyframes moveInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+  80% {
+    transform: translateX(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@keyframes moveInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+  80% {
+    transform: translateX(-1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@keyframes moveInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+.btn {
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all .2s;
+    position: relative;
+    font-size: $default-font-size;
+  }
+  &--white {
+    background-color: $color-white;
+    color: $color-gray;
+    &::after {
+      background-color: $color-white;
+    }
+  }
+  &:hover {
+    transform: translateY(-.3rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+  }
+  &::after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+  }
+  &--animated {
+    animation: moveInFromBottom .5s ease-out .7s;
+    // anim fill mode will apply 0% animations by default
+    animation-fill-mode: backwards;
+  }
+}
+.btn-text {
+  &:link,
+  &:visited {
+    font-size: $default-font-size;
+    color: $dark-green;
+    // to make it a box, add margin padding etc.
+    display: inline-block;
+    text-decoration: none;
+    // padding between text and line
+    border-bottom: 1px solid $dark-green;
+    padding: .3rem;
+    transition: all .2s;
+  }
+  &:hover {
+    background-color: $dark-green;
+    color: $color-white;
+    box-shadow: 0 1rem 2rem rgba( $color-black, 0.15);
+    transform: translateY(-2px);
+  }
+  &:active {
+    box-shadow: 0 .5rem 1rem rgba( $color-black, 0.15);
+    transform: translateY(0);
+  }
+}
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  background-image: linear-gradient(to right, $light-green, $dark-green);
+  display: inline-block;
+  // this will clip the part the text is taking
+  -webkit-background-clip: text;
+  // now make the text invisible so the clipped background image can be seen as text
+  color: transparent;
+  letter-spacing: .2rem;
+  transition: all .2s;
+  &:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba($color-gray, 0.2);
+  }
+}
+.heading-tertiary {
+  font-size: $default-font-size;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.u-center-text {
+  text-align: center;
+}
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem;
+}
+.u-margin-bottom-medium {
+  margin-bottom: 4rem;
+}
+.u-margin-bottom-big {
+  margin-bottom: 8rem;
+}
+
+.paragraph {
+  font-size: $default-font-size;
+  justify-content: end;
+  &:not(:last-child) {
+    margin-bottom: 3rem;
   }
 }
 
