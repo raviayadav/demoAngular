@@ -1,4 +1,4 @@
-@import "../../../css-variables";
+@import "../../../css-variables.scss";
 
 .section-about {
   background-color: $color-gray-light-1;
@@ -6,3 +6,36 @@
   margin-top: -20vh;
 }
 
+.composition {
+  position: relative;
+  &__photo {
+    width: 55%;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.4);
+    border-radius: 0.2rem;
+    position: absolute;
+    z-index: 10;
+    transition: all .2s;
+    outline-offset: 1.3rem; // this we cant achieve on border, so we use outline, space between border and element...
+    &--p1 {
+      left: 0;
+      top: -2rem;
+    }
+    &--p2 {
+      right: 0;
+      top: 2rem;
+    }
+    &--p3 {
+      left: 20%;
+      top: 10rem;
+    }
+    &:hover {
+      outline: 1rem solid $dark-green; // to achieve spae btw border and element.
+      transform: scale(1.05) translateY(-.5rem);
+      box-shadow: 0 2.5rem 4rem rgba($color-black, 0.5); 
+      z-index: 20;
+    }
+  }
+  &:hover &__photo:not(:hover) {
+    transform: scale(0.95);
+  }
+}
